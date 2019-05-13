@@ -1,7 +1,8 @@
+from django.urls import path
+from . import views
+
 app_name = 'wechat'
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', views.weixin_main, name='weixin_main'),
-    #url(r'^startmymenu$', views.startmymenu, name='startmymenu'),
+    path('', views.handle, name='handle'),
     ]

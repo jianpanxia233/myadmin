@@ -8,14 +8,14 @@ from django.http import HttpResponse
 @csrf_exempt
 def handle(request):
     if request.method == "GET":
-        # 鎺ユ敹寰俊鏈嶅姟鍣╣et璇锋眰鍙戣繃鏉ョ殑鍙傛暟
+        # 接收微信服务器get请求发过来的参数
         signature = request.GET.get('signature', None)
         timestamp = request.GET.get('timestamp', None)
         nonce = request.GET.get('nonce', None)
         echostr = request.GET.get('echostr', None)
-        # 鏈嶅姟鍣ㄩ厤缃腑鐨則oken
+        # 服务器配置中的token
         token = 'qwertyu'
-        # 鎶婂弬鏁版斁鍒發ist涓帓搴忓悗鍚堟垚涓�涓瓧绗︿覆锛屽啀鐢╯ha1鍔犲瘑寰楀埌鏂扮殑瀛楃涓蹭笌寰俊鍙戞潵鐨剆ignature瀵规瘮锛屽鏋滅浉鍚屽氨杩斿洖echostr缁欐湇鍔″櫒锛屾牎楠岄�氳繃
+        # 把参数放到list中排序后合成一个字符串，再用sha1加密得到新的字符串与微信发来的signature对比，如果相同就返回echostr给服务器，校验通过
         hashlist = [token, timestamp, nonce]
         hashlist.sort()
         hashstr = ''.join([s for s in hashlist])
