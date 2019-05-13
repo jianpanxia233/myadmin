@@ -1,4 +1,5 @@
 import datetime
+
 from django.shortcuts import render, redirect
 from django.contrib.contenttypes.models import ContentType
 from django.utils import timezone

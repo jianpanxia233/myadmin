@@ -29,6 +29,7 @@ urlpatterns = [
     path('comment/', include('comment.urls')),
     path('login/', views.login, name='login'),
     path('register/', views.register, name='register'),
+    path('wx/',include('wechat.urls',namespace="wechat")),
 ]
 
 #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
